@@ -1,0 +1,14 @@
+FROM local/aspnet:1.0.0-rc1-final-coreclr
+
+RUN useradd -m -d /app -s /bin/bash app
+USER app
+
+ENV LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/lib/"
+
+COPY project.json /app/project.json
+WORKDIR /app
+RUN ["dnu", "restore"]
+
+COPY . /app/
+
+CMD ["dnx", "Microsoft.AspNet.Server.Kestrel --server.urls http://*:$PORT"]
