@@ -1,4 +1,4 @@
-FROM local/aspnet:1.0.0-rc1-final-coreclr
+FROM friism/aspnet:1.0.0-rc1-final-coreclr
 
 RUN useradd -m -d /app -s /bin/bash app
 USER app
